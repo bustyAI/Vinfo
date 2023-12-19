@@ -2,9 +2,5 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <main className="overflow-hidden">
-      <Button>Hellp</Button>
-    </main>
-  );
+  return <main className="overflow-hidden"></main>;
 }
