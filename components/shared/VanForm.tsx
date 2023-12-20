@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { vanFormSchema } from "@/lib/validator";
 import * as z from "zod";
+import { Textarea } from "@/components/ui/textarea";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -44,7 +45,7 @@ const VanForm = ({ userId, type }: VanFormProps) => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-5"
       >
-        <div className="flex gap-5 sm:flex-row md:flex-row lg:flex-col">
+        <div className="flex gap-5 flex-col">
           <FormField
             control={form.control}
             name="name"
@@ -64,7 +65,7 @@ const VanForm = ({ userId, type }: VanFormProps) => {
 
           <FormField
             control={form.control}
-            name="vanType"
+            name="fuelType"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -77,6 +78,42 @@ const VanForm = ({ userId, type }: VanFormProps) => {
               </FormItem>
             )}
           />
+
+          <FormField
+            control={form.control}
+            name="vanType"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input
+                    placeholder="Van Brand"
+                    {...field}
+                    className="input-field"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <div className="flex flex-col gap-5 ">
+            <FormField
+              control={form.control}
+              name="maintenance"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormControl className=" h-64">
+                    <Textarea
+                      placeholder="Maintenance Description"
+                      {...field}
+                      className="text-area rounded-2xl"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
         <Button type="submit">Submit</Button>
       </form>
