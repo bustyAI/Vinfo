@@ -2,6 +2,7 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { vanFormSchema } from "@/lib/validator";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -15,10 +16,7 @@ import {
   Form,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-
-const formSchema = z.object({
-  username: z.string().min(2).max(50),
-});
+import { vanDefaultValues } from "@/constants";
 
 type VanFormProps = {
   userId: string;
@@ -26,15 +24,14 @@ type VanFormProps = {
 };
 
 const VanForm = ({ userId, type }: VanFormProps) => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
+  const initialVals = vanDefaultValues;
+  const form = useForm<z.infer<typeof vanFormSchema>>({
+    resolver: zodResolver(vanFormSchema),
+    defaultValues: initialVals,
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof vanFormSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
@@ -42,23 +39,45 @@ const VanForm = ({ userId, type }: VanFormProps) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex flex-col gap-5"
+      >
+        <div className="flex gap-5 sm:flex-row md:flex-row lg:flex-col">
+          <FormField
+            control={form.control}
+            name="vanType"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input
+                    placeholder="Van name"
+                    {...field}
+                    className="input-field"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <Input
+                    placeholder="Van name"
+                    {...field}
+                    className="input-field"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button type="submit">Submit</Button>
       </form>
     </Form>

@@ -12,3 +12,9 @@ export const headerLinks = [
     route: "/profile",
   },
 ];
+
+export const vanDefaultValues = {
+  name: "Sprinter 1",
+  vanType: "Mercedes",
+  fuelType: "Diesel",
+};
