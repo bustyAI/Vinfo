@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { vanDefaultValues } from "@/constants";
+import Dropdown from "./Dropdown";
 
 type VanFormProps = {
   userId: string;
@@ -46,7 +47,7 @@ const VanForm = ({ userId, type }: VanFormProps) => {
         <div className="flex gap-5 sm:flex-row md:flex-row lg:flex-col">
           <FormField
             control={form.control}
-            name="vanType"
+            name="name"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
@@ -63,14 +64,13 @@ const VanForm = ({ userId, type }: VanFormProps) => {
 
           <FormField
             control={form.control}
-            name="name"
+            name="vanType"
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input
-                    placeholder="Van name"
-                    {...field}
-                    className="input-field"
+                  <Dropdown
+                    onChangeHandler={field.onChange}
+                    value={field.value}
                   />
                 </FormControl>
                 <FormMessage />
