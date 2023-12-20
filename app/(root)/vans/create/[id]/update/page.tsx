@@ -2,7 +2,7 @@ import VanForm from "@/components/shared/VanForm";
 import { auth } from "@clerk/nextjs";
 import React from "react";
 
-const CreateVan = () => {
+const UpdateVan = () => {
   const { sessionClaims } = auth();
 
   const userId = sessionClaims?.userId as string;
@@ -11,15 +11,15 @@ const CreateVan = () => {
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <h3 className="wrapper h3-bold  sm:text-left md:text-center">
-          Create Van
+          Update Van
         </h3>
       </section>
 
       <div className="wrapper my-8">
-        <VanForm userId={userId} type="Create" />
+        <VanForm userId={userId} type="Update" />
       </div>
     </>
   );
 };
 
-export default CreateVan;
+export default UpdateVan;
