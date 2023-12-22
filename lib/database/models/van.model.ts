@@ -1,7 +1,18 @@
 import { Schema, model, models } from "mongoose";
 
+export interface IVan extends Document {
+  _id: string;
+  name: string;
+  vanType: string;
+  fuelType: string;
+  chargePercent?: number;
+  isCharging?: number;
+  maintenance?: string;
+  isCharged?: boolean;
+  creator: { _id: string; firstName: string; lastName: string };
+}
+
 const VanSchema = new Schema({
-  vanId: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   vanType: { type: String, required: true },
   fuelType: { type: String, required: true },
@@ -10,6 +21,7 @@ const VanSchema = new Schema({
   isCharging: { type: Boolean },
   maintenance: { type: String },
   isCharged: { type: Boolean },
+  creator: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 const Van = models.Van || model("Van", VanSchema);

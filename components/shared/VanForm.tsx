@@ -3,6 +3,7 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { vanFormSchema } from "@/lib/validator";
+import { useRouter } from "next/navigation";
 import * as z from "zod";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -23,6 +24,8 @@ import { FaShuttleVan } from "react-icons/fa";
 import { BsFuelPumpFill } from "react-icons/bs";
 import { SiMercedes } from "react-icons/si";
 import { CgNotes } from "react-icons/cg";
+import { handleError } from "@/lib/utils";
+import { createVan } from "@/lib/actions/van.actions";
 
 type VanFormProps = {
   userId: string;
@@ -31,15 +34,30 @@ type VanFormProps = {
 
 const VanForm = ({ userId, type }: VanFormProps) => {
   const initialVals = vanDefaultValues;
+  const router = useRouter();
   const form = useForm<z.infer<typeof vanFormSchema>>({
     resolver: zodResolver(vanFormSchema),
     defaultValues: initialVals,
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof vanFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof vanFormSchema>) {
+    if (type === "Create") {
+      try {
+        const newVan = await createVan({
+          van: { ...values },
+          userId,
+          path: "/profile",
+        });
+
+        if (newVan) {
+          form.reset();
+          router.push(`/event/${newVan._id}`);
+        }
+      } catch (error) {
+        handleError(error);
+      }
+    }
     console.log(values);
   }
 
@@ -128,7 +146,14 @@ const VanForm = ({ userId, type }: VanFormProps) => {
             />
           </div>
         </div>
-        <Button type="submit">Submit</Button>
+        <Button
+          type="submit"
+          size="lg"
+          disabled={form.formState.isSubmitting}
+          className="button col-span-2 w-full"
+        >
+          {form.formState.isSubmitting ? "Submitting..." : `${type} Van`}
+        </Button>
       </form>
     </Form>
   );

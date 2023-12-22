@@ -15,38 +15,34 @@ export type UpdateUserParams = {
   photo: string;
 };
 
-// ====== EVENT PARAMS
-export type CreateEventParams = {
+// ====== Van PARAMS
+export type CreateVanParams = {
   userId: string;
-  event: {
-    title: string;
-    description: string;
-    location: string;
-    imageUrl: string;
-    startDateTime: Date;
-    endDateTime: Date;
-    categoryId: string;
-    price: string;
-    isFree: boolean;
-    url: string;
+  van: {
+    name: string;
+    vanType: string;
+    fuelType: string;
+    fuelLevel: number;
+    chargePercent: number;
+    isCharging: boolean;
+    maintenance: string;
+    isCharged: boolean;
   };
   path: string;
 };
 
-export type UpdateEventParams = {
+export type UpdateVanParams = {
   userId: string;
   event: {
     _id: string;
-    title: string;
-    imageUrl: string;
-    description: string;
-    location: string;
-    startDateTime: Date;
-    endDateTime: Date;
-    categoryId: string;
-    price: string;
-    isFree: boolean;
-    url: string;
+    name: string;
+    vanType: string;
+    fuelType: string;
+    fuelLevel: number;
+    chargePercent: number;
+    isCharging: boolean;
+    maintenance: string;
+    isCharged: boolean;
   };
   path: string;
 };
@@ -69,66 +65,21 @@ export type GetEventsByUserParams = {
   page: number;
 };
 
-export type GetRelatedEventsByCategoryParams = {
-  categoryId: string;
-  eventId: string;
-  limit?: number;
-  page: number | string;
-};
-
-export type Event = {
+export type Van = {
   _id: string;
-  title: string;
-  description: string;
-  price: string;
-  isFree: boolean;
-  imageUrl: string;
-  location: string;
-  startDateTime: Date;
-  endDateTime: Date;
-  url: string;
-  organizer: {
+  name: string;
+  vanType: string;
+  fuelType: string;
+  fuelLevel: number;
+  chargePercent: number;
+  isCharging: boolean;
+  maintenance: string;
+  isCharged: boolean;
+  creator: {
     _id: string;
     firstName: string;
     lastName: string;
   };
-  category: {
-    _id: string;
-    name: string;
-  };
-};
-
-// ====== CATEGORY PARAMS
-export type CreateCategoryParams = {
-  categoryName: string;
-};
-
-// ====== ORDER PARAMS
-export type CheckoutOrderParams = {
-  eventTitle: string;
-  eventId: string;
-  price: string;
-  isFree: boolean;
-  buyerId: string;
-};
-
-export type CreateOrderParams = {
-  stripeId: string;
-  eventId: string;
-  buyerId: string;
-  totalAmount: string;
-  createdAt: Date;
-};
-
-export type GetOrdersByEventParams = {
-  eventId: string;
-  searchString: string;
-};
-
-export type GetOrdersByUserParams = {
-  userId: string | null;
-  limit?: number;
-  page: string | number | null;
 };
 
 // ====== URL QUERY PARAMS
