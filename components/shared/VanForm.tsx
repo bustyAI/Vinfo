@@ -19,6 +19,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { vanDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
+import { FaShuttleVan } from "react-icons/fa";
+import { BsFuelPumpFill } from "react-icons/bs";
+import { SiMercedes } from "react-icons/si";
+import { CgNotes } from "react-icons/cg";
 
 type VanFormProps = {
   userId: string;
@@ -52,11 +56,14 @@ const VanForm = ({ userId, type }: VanFormProps) => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input
-                    placeholder="Van name"
-                    {...field}
-                    className="input-field"
-                  />
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <FaShuttleVan />
+                    <Input
+                      placeholder="Van name"
+                      {...field}
+                      className="input-field"
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -69,10 +76,13 @@ const VanForm = ({ userId, type }: VanFormProps) => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Dropdown
-                    onChangeHandler={field.onChange}
-                    value={field.value}
-                  />
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <BsFuelPumpFill />
+                    <Dropdown
+                      onChangeHandler={field.onChange}
+                      value={field.value}
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -85,11 +95,14 @@ const VanForm = ({ userId, type }: VanFormProps) => {
             render={({ field }) => (
               <FormItem className="w-full">
                 <FormControl>
-                  <Input
-                    placeholder="Van Brand"
-                    {...field}
-                    className="input-field"
-                  />
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <SiMercedes />
+                    <Input
+                      placeholder="Van Brand"
+                      {...field}
+                      className="input-field"
+                    />
+                  </div>
                 </FormControl>
                 <FormMessage />
               </FormItem>

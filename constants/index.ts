@@ -14,7 +14,7 @@ export const headerLinks = [
 ];
 
 export const vanDefaultValues = {
-  name: "Sprinter 1",
-  vanType: "Mercedes",
-  fuelType: "Diesel",
+  name: "Van name",
+  vanType: "Van brand",
+  fuelType: "Electric",
 };
