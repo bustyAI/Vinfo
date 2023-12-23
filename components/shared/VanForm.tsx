@@ -52,7 +52,7 @@ const VanForm = ({ userId, type }: VanFormProps) => {
 
         if (newVan) {
           form.reset();
-          router.push(`/event/${newVan._id}`);
+          router.push(`/vans/${newVan._id}`);
         }
       } catch (error) {
         handleError(error);
