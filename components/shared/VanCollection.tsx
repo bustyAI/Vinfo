@@ -31,7 +31,7 @@ const VanCollection = ({
               const hasOrderLink = collectionType === "Vans_Organized";
               return (
                 <li key={van._id} className="flex justify-center">
-                  <Card />
+                  <Card van={van} hasOrderLink={hasOrderLink} />
                 </li>
               );
             })}
