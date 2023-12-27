@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { FaSearch, FaEdit } from "react-icons/fa";
 import { auth } from "@clerk/nextjs";
+import { DeleteConfirmation } from "./DeleteConfirmation";
 
 type VanProps = {
   van: IVan;
@@ -28,6 +29,8 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
           <Link href={`/vans/${van._id}/update`}>
             <FaEdit className="w-[20px] h-[20px]" />
           </Link>
+
+          <DeleteConfirmation vanId={van._id} />
         </div>
       )}
 

@@ -47,8 +47,8 @@ export type UpdateVanParams = {
   path: string;
 };
 
-export type DeleteEventParams = {
-  eventId: string;
+export type DeleteVanParams = {
+  vanId: string;
   path: string;
 };
 

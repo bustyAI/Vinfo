@@ -1,10 +1,11 @@
 "use server";
 
-import { CreateVanParams, GetAllVansParams } from "@/types";
+import { CreateVanParams, DeleteVanParams, GetAllVansParams } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import User from "../database/models/users.model";
 import Van from "../database/models/van.model";
+import { revalidatePath } from "next/cache";
 
 export const createVan = async ({ van, userId, path }: CreateVanParams) => {
   try {
@@ -75,3 +76,15 @@ export const getAllVans = async ({
     handleError(error);
   }
 };
+
+// DELETE
+export async function deleteVan({ vanId, path }: DeleteVanParams) {
+  try {
+    await connectToDatabase();
+
+    const deletedEvent = await Van.findByIdAndDelete(vanId);
+    if (deletedEvent) revalidatePath(path);
+  } catch (error) {
+    handleError(error);
+  }
+}
