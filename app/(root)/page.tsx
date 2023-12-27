@@ -1,8 +1,18 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import VanCollection from "@/components/shared/VanCollection";
+import { getAllVans } from "@/lib/actions/van.actions";
 
-export default function Home() {
+export default async function Home() {
+  const vans = await getAllVans({
+    query: "",
+    vanType: "",
+    page: 1,
+    limit: 6,
+  });
+
+  console.log(vans);
   return (
     <>
       <section className="bg-primary-50 bg-dotted-pattern bg-contain py-5 md:py-10">
@@ -36,6 +46,15 @@ export default function Home() {
           Search <br />
           filter
         </div>
+        <VanCollection
+          data={vans?.data}
+          emptyTitle="No Vans Found"
+          emptyStateSubtext="Register your fleet now"
+          collectionType="All_Vans"
+          limit={6}
+          totalPages={2}
+          page={""}
+        />
       </section>
     </>
   );

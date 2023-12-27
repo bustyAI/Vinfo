@@ -1,6 +1,6 @@
 "use server";
 
-import { CreateVanParams } from "@/types";
+import { CreateVanParams, GetAllVansParams } from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import User from "../database/models/users.model";
@@ -39,6 +39,38 @@ export const getVanById = async (vanId: string) => {
     }
 
     return JSON.parse(JSON.stringify(van));
+  } catch (error) {
+    handleError(error);
+  }
+};
+const populateVan = (query: any) => {
+  return query.populate({
+    path: "creator",
+    model: User,
+    select: "_id firstName lastName",
+  });
+};
+
+export const getAllVans = async ({
+  query,
+  limit = 6,
+  page,
+  vanType,
+}: GetAllVansParams) => {
+  try {
+    await connectToDatabase();
+
+    const conditions = {};
+
+    const vansQuery = Van.find(conditions);
+
+    const vans = await populateVan(vansQuery);
+    const vansCount = await Van.countDocuments(conditions);
+
+    return {
+      data: JSON.parse(JSON.stringify(vans)),
+      totalPages: Math.ceil(vansCount / limit),
+    };
   } catch (error) {
     handleError(error);
   }

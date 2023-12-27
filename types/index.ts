@@ -52,9 +52,9 @@ export type DeleteEventParams = {
   path: string;
 };
 
-export type GetAllEventsParams = {
+export type GetAllVansParams = {
   query: string;
-  category: string;
+  vanType: string;
   limit: number;
   page: number;
 };
