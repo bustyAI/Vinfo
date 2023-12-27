@@ -27,3 +27,19 @@ export const createVan = async ({ van, userId, path }: CreateVanParams) => {
     handleError(error);
   }
 };
+
+export const getVanById = async (vanId: string) => {
+  try {
+    await connectToDatabase();
+
+    const van = await Van.findById(vanId);
+
+    if (!van) {
+      throw new Error("No Van Found");
+    }
+
+    return JSON.parse(JSON.stringify(van));
+  } catch (error) {
+    handleError(error);
+  }
+};
