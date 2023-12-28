@@ -20,7 +20,7 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
     <div className="group relative flex min-h-[380px] w-full max-w-[400px] flex-col overflow-hidden rounded-xl bg-white shadow-md transition-all hover:shadow-lg md:min-h-[438px]">
       <Link
         href={`/vans/${van._id}`}
-        style={{ backgroundImage: "/rivian.png" }}
+        style={{ backgroundImage: `url("/rivian.png")` }}
         className="flex-center flex-grow bg-gray-50 bg-cover bg-center text-grey-500"
       ></Link>
 
