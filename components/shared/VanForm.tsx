@@ -20,10 +20,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { vanDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
-import { FaShuttleVan } from "react-icons/fa";
+
+import { FaShuttleVan, FaPercent } from "react-icons/fa";
 import { BsFuelPumpFill } from "react-icons/bs";
 import { SiMercedes } from "react-icons/si";
-import { CgNotes } from "react-icons/cg";
 import { handleError } from "@/lib/utils";
 import { createVan } from "@/lib/actions/van.actions";
 
@@ -119,6 +119,30 @@ const VanForm = ({ userId, type }: VanFormProps) => {
                       placeholder="Van Brand"
                       {...field}
                       className="input-field"
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="chargePercent"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <FaPercent />
+                    <Input
+                      placeholder="Charge Percent"
+                      {...field}
+                      className="input-field"
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        field.onChange(value === "" ? value : Number(value));
+                      }}
                     />
                   </div>
                 </FormControl>

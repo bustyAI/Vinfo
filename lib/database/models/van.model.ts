@@ -5,6 +5,7 @@ export interface IVan extends Document {
   name: string;
   vanType: string;
   fuelType: string;
+  fuelLevel: string;
   chargePercent?: number;
   isCharging?: number;
   maintenance?: string;

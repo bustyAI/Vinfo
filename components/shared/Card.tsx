@@ -39,16 +39,30 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
         className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4"
       >
         <div className="flex gap-2 ">
-          <span className="p-semibold-14 w-min rounded-full bg-green-100 px-4 py-1 ">
-            asdfshldj
-          </span>
-          <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 text-grey-500">
+          <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1">
             {van.name.toUpperCase()}
           </p>
+          <span className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 ">
+            {van.isCharging ? (
+              <span className=" text-green-600">Uncharged</span>
+            ) : (
+              <span className=" text-red-600">Uncharged</span>
+            )}
+          </span>
+          <span className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 ">
+            {`%${van.chargePercent}`}
+          </span>
+          <span className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 ">
+            {van.isCharged ? (
+              <span className=" text-green-600">RR</span>
+            ) : (
+              <span className=" text-red-600">NRR</span>
+            )}
+          </span>
         </div>
-        <p className="p-medium-16 p-medium-18 text-grey-500">asdfasdfasdfa</p>
+        <p className="p-medium-16 p-medium-18 text-grey-500">{van.vanType}</p>
         <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">
-          asdfasdfhja;sldjfasdfaafsdfasd
+          {van.maintenance ? van.maintenance : "No Maintenance"}
         </p>
         <div className="flex-between w-full">
           <p className="p-medium-14 md:p-medium-16 text-grey-600">

@@ -8,28 +8,22 @@ import {
 } from "@/components/ui/select";
 
 type DropdownChargeProps = {
-  value?: boolean;
-  onChangeHandler?: () => void;
-};
-
-type DropdownProps = {
   value?: string;
   onChangeHandler?: () => void;
 };
 
-const Dropdown = ({ value, onChangeHandler }: DropdownProps) => {
+const DropDownCharge = ({ value, onChangeHandler }: DropdownChargeProps) => {
   return (
     <Select onValueChange={onChangeHandler} defaultValue={value}>
       <SelectTrigger className="select-field">
         <SelectValue placeholder="Fuel Type" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="Gas">Gas</SelectItem>
-        <SelectItem value="Diesel">Diesel</SelectItem>
-        <SelectItem value="Electric">Electric</SelectItem>
+        <SelectItem value="true">Is Charging</SelectItem>
+        <SelectItem value="false">Not Charging</SelectItem>
       </SelectContent>
     </Select>
   );
 };
 
-export default Dropdown;
+export default DropDownCharge;

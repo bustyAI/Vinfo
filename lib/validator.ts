@@ -4,7 +4,7 @@ export const vanFormSchema = z.object({
   vanType: z.string().min(2, "Van Type must be more than 2 characters"),
   fuelType: z.string().min(1, "Fuel Type must be more than 1 characters"),
   fuelLevel: z.number(),
-  chargePercent: z.number(),
+  chargePercent: z.number().min(0, "Must add charge percent"),
   isCharging: z.boolean(),
   maintenance: z
     .string()
