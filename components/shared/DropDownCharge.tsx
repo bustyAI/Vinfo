@@ -8,13 +8,16 @@ import {
 } from "@/components/ui/select";
 
 type DropdownChargeProps = {
-  value?: string;
+  value?: boolean;
   onChangeHandler?: () => void;
 };
 
 const DropDownCharge = ({ value, onChangeHandler }: DropdownChargeProps) => {
   return (
-    <Select onValueChange={onChangeHandler} defaultValue={value}>
+    <Select
+      onValueChange={onChangeHandler}
+      defaultValue={value ? "true" : "false"}
+    >
       <SelectTrigger className="select-field">
         <SelectValue placeholder="Fuel Type" />
       </SelectTrigger>

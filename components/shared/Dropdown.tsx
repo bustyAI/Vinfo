@@ -7,11 +7,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type DropdownChargeProps = {
-  value?: boolean;
-  onChangeHandler?: () => void;
-};
-
 type DropdownProps = {
   value?: string;
   onChangeHandler?: () => void;

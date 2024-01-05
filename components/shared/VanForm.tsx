@@ -26,6 +26,8 @@ import { BsFuelPumpFill } from "react-icons/bs";
 import { SiMercedes } from "react-icons/si";
 import { handleError } from "@/lib/utils";
 import { createVan } from "@/lib/actions/van.actions";
+import { GiCharging } from "react-icons/gi";
+import DropDownCharge from "./DropDownCharge";
 
 type VanFormProps = {
   userId: string;
@@ -97,6 +99,24 @@ const VanForm = ({ userId, type }: VanFormProps) => {
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                     <BsFuelPumpFill />
                     <Dropdown
+                      onChangeHandler={field.onChange}
+                      value={field.value}
+                    />
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="isCharging"
+            render={({ field }) => (
+              <FormItem className="w-full">
+                <FormControl>
+                  <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
+                    <GiCharging />
+                    <DropDownCharge
                       onChangeHandler={field.onChange}
                       value={field.value}
                     />
