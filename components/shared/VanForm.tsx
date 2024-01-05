@@ -118,8 +118,8 @@ const VanForm = ({ userId, type }: VanFormProps) => {
                     <GiCharging />
                     <DropDownCharge
                       onChangeHandler={(selectedOption) => {
-                        // Assuming selectedOption is a value that can be mapped to a boolean
-                        field.onChange(selectedOption === "true"); // replace someValueRepresentingTrue with the actual value that represents true
+                        // Assuming value is a value that can be mapped to a boolean
+                        field.onChange(selectedOption === "true");
                       }}
                       value={field.value}
                     />
