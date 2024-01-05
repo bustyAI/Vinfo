@@ -9,7 +9,7 @@ import {
 
 type DropdownChargeProps = {
   value?: boolean;
-  onChangeHandler?: () => void;
+  onChangeHandler?: (newValue: string) => void;
 };
 
 const DropDownCharge = ({ value, onChangeHandler }: DropdownChargeProps) => {

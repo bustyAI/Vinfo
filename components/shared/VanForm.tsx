@@ -117,7 +117,10 @@ const VanForm = ({ userId, type }: VanFormProps) => {
                   <div className="flex-center h-[54px] w-full overflow-hidden rounded-full bg-gray-50 px-4 py-2">
                     <GiCharging />
                     <DropDownCharge
-                      onChangeHandler={field.onChange}
+                      onChangeHandler={(selectedOption) => {
+                        // Assuming selectedOption is a value that can be mapped to a boolean
+                        field.onChange(selectedOption === "true"); // replace someValueRepresentingTrue with the actual value that represents true
+                      }}
                       value={field.value}
                     />
                   </div>
