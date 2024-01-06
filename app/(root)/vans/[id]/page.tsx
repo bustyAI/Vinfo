@@ -13,7 +13,7 @@ const page = async ({ params: { id } }: SearchParamProps) => {
   console.log(van);
   return (
     <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain ">
-      <div className=" grid grid-cols-1 md:grid-cols-2 2xl:max-w-7xl">
+      <div className=" grid grid-cols-1 2xl:max-w-7xl">
         <Image
           src="/rivian.png"
           alt="Vehicle Image"
@@ -32,13 +32,13 @@ const page = async ({ params: { id } }: SearchParamProps) => {
                   {van.vanType}
                 </p>
               </div>
-              <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
-                by{" "}
-                <span className="text-primary-500">
-                  {creator.creator.firstName} {creator.creator.lastName}
-                </span>
-              </p>
             </div>
+            <p className="p-medium-18 ml-2 mt-2 sm:mt-0">
+              by{" "}
+              <span className="text-primary-500">
+                {creator.creator.firstName} {creator.creator.lastName} | Amazon
+              </span>
+            </p>
           </div>
           <div className="flex flex-col gap-5">
             <div className="flex gap-2 md:gap-3">
@@ -47,12 +47,21 @@ const page = async ({ params: { id } }: SearchParamProps) => {
               <MdEmail className="mt-1" />
               <p className="">{creator.creator.email}</p>
             </div>
+            <div className="flex flex-col gap-2 ml-4">
+              <p className="p-medium-16  lg:p-regular-18">{van.fuelType}</p>
+              <p className="p-medium-16  lg:p-regular-18">
+                {van.chargePercent}
+              </p>
+              <p className="p-medium-16  lg:p-regular-18">
+                {van.isCharged ? "Charged" : "Not Charged"}
+              </p>
+              <p className="p-medium-16  lg:p-regular-18">
+                {van.isCharging ? "Charging" : "Not Charging"}
+              </p>
+              <p className="p-bold-20 text-gray-600">Maintenance</p>
+              <p className="p-medium-16  lg:p-regular-18">{van.maintenance}</p>
+            </div>
           </div>
-          <div className="p-regular-20 flex-center gap-3"></div>
-        </div>
-        <div className="flex flex-col gap-2 ml-4">
-          <p className="p-bold-20 text-gray-600">Maintenance</p>
-          <p className="p-medium-16  lg:p-regualr-18">{van.maintenance}</p>
         </div>
       </div>
     </section>
