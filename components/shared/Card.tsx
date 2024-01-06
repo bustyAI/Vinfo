@@ -44,7 +44,7 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
           </p>
           <span className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1 ">
             {van.isCharging ? (
-              <span className=" text-green-600">Uncharged</span>
+              <span className=" text-green-600">Charged</span>
             ) : (
               <span className=" text-red-600">Uncharged</span>
             )}

@@ -1,10 +1,18 @@
 import VanForm from "@/components/shared/VanForm";
+import { getVanById } from "@/lib/actions/van.actions";
 import { auth } from "@clerk/nextjs";
 import React from "react";
 
-const UpdateVan = () => {
+type UpdateVanProps = {
+  params: {
+    id: string;
+  };
+};
+
+const UpdateVan = async ({ params: { id } }: UpdateVanProps) => {
   const { sessionClaims } = auth();
 
+  const van = await getVanById(id);
   const userId = sessionClaims?.userId as string;
 
   console.log("UserID: " + userId);
@@ -18,7 +26,7 @@ const UpdateVan = () => {
       </section>
 
       <div className="wrapper my-8">
-        <VanForm userId={userId} type="Update" />
+        <VanForm userId={userId} type="Update" van={van} vanId={van._id} />
       </div>
     </>
   );

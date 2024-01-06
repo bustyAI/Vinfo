@@ -25,17 +25,20 @@ import { FaShuttleVan, FaPercent } from "react-icons/fa";
 import { BsFuelPumpFill } from "react-icons/bs";
 import { SiMercedes } from "react-icons/si";
 import { handleError } from "@/lib/utils";
-import { createVan } from "@/lib/actions/van.actions";
+import { createVan, updateVan } from "@/lib/actions/van.actions";
 import { GiCharging } from "react-icons/gi";
 import DropDownCharge from "./DropDownCharge";
+import { IVan } from "@/lib/database/models/van.model";
 
 type VanFormProps = {
   userId: string;
   type: "Create" | "Update";
+  van?: IVan;
+  vanId?: string;
 };
 
-const VanForm = ({ userId, type }: VanFormProps) => {
-  const initialVals = vanDefaultValues;
+const VanForm = ({ userId, type, van, vanId }: VanFormProps) => {
+  const initialVals = van && type === "Update" ? van : vanDefaultValues;
   const router = useRouter();
   const form = useForm<z.infer<typeof vanFormSchema>>({
     resolver: zodResolver(vanFormSchema),
@@ -60,7 +63,27 @@ const VanForm = ({ userId, type }: VanFormProps) => {
         handleError(error);
       }
     }
-    console.log(values);
+    if (type === "Update") {
+      if (!vanId) {
+        router.back();
+        return;
+      }
+
+      try {
+        const updatedVan = await updateVan({
+          userId,
+          van: { ...values, _id: vanId },
+          path: `/vans/${vanId}`,
+        });
+
+        if (updatedVan) {
+          form.reset();
+          router.push(`/vans/${updatedVan._id}`);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }
 
   return (

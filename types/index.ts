@@ -33,7 +33,7 @@ export type CreateVanParams = {
 
 export type UpdateVanParams = {
   userId: string;
-  event: {
+  van: {
     _id: string;
     name: string;
     vanType: string;

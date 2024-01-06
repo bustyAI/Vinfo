@@ -1,6 +1,11 @@
 "use server";
 
-import { CreateVanParams, DeleteVanParams, GetAllVansParams } from "@/types";
+import {
+  CreateVanParams,
+  DeleteVanParams,
+  GetAllVansParams,
+  UpdateVanParams,
+} from "@/types";
 import { handleError } from "../utils";
 import { connectToDatabase } from "../database";
 import User from "../database/models/users.model";
@@ -28,6 +33,31 @@ export const createVan = async ({ van, userId, path }: CreateVanParams) => {
     handleError(error);
   }
 };
+
+// UPDATE
+export async function updateVan({ userId, van, path }: UpdateVanParams) {
+  console.log("This is what we are looking for");
+  console.log(await Van.findById(van._id));
+  try {
+    await connectToDatabase();
+
+    const vanToUpdate = await Van.findById(van._id);
+    if (!vanToUpdate || vanToUpdate.creator.toHexString() !== userId) {
+      throw new Error("Unauthorized or event not found");
+    }
+
+    const updatedVan = await Van.findByIdAndUpdate(
+      van._id,
+      { ...van },
+      { new: true }
+    );
+    revalidatePath(path);
+
+    return JSON.parse(JSON.stringify(updatedVan));
+  } catch (error) {
+    handleError(error);
+  }
+}
 
 export const getVanById = async (vanId: string) => {
   try {
