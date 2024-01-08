@@ -5,9 +5,17 @@ const Footer = () => {
   return (
     <footer className="border-t">
       <div className="flex-center wrapper flex-between flex flex-col gap-4 p-5 text-center sm:flex-row">
-        <Link href="/">Logo</Link>
+        <Link href="/">
+          <Image
+            src="/assets/images/prime-logo.png"
+            height={150}
+            width={150}
+            className=" object-contain"
+            alt="prime"
+          />
+        </Link>
 
-        <p>2023 Vinfo. All Rights reserved.</p>
+        <p>2024 Vinfo. All Rights reserved.</p>
       </div>
     </footer>
   );

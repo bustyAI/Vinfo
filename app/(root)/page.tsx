@@ -22,9 +22,6 @@ export default async function Home() {
             <p className="p-regular-20 md:p-regular-24">
               Keep up to date with your entire fleet!
             </p>
-            <Button size="lg" asChild className="button w-full sm:w-fit">
-              <Link href="#events">Explore Now</Link>
-            </Button>
           </div>
 
           <Image
