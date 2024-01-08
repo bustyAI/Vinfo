@@ -35,7 +35,7 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
       )}
 
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
-        <div className="flex gap-2 ">
+        <div className="flex gap-2">
           <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1">
             {van.name.toUpperCase()}
           </p>

@@ -50,10 +50,7 @@ const page = async ({ params: { id } }: SearchParamProps) => {
             <div className="flex flex-col gap-2 ml-4">
               <p className="p-medium-16  lg:p-regular-18">{van.fuelType}</p>
               <p className="p-medium-16  lg:p-regular-18">
-                {van.chargePercent}
-              </p>
-              <p className="p-medium-16  lg:p-regular-18">
-                {van.isCharged ? "Charged" : "Not Charged"}
+                {`%${van.chargePercent}`}
               </p>
               <p className="p-medium-16  lg:p-regular-18">
                 {van.isCharging ? "Charging" : "Not Charging"}
