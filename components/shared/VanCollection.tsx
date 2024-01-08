@@ -1,6 +1,7 @@
 import { IVan } from "@/lib/database/models/van.model";
 import React from "react";
 import Card from "./Card";
+import NewVanCard from "./NewVanCard";
 
 type CollectionProps = {
   data: IVan[];
@@ -35,6 +36,9 @@ const VanCollection = ({
                 </li>
               );
             })}
+            <li className="flex justify-center">
+              <NewVanCard />
+            </li>
           </ul>
         </div>
       ) : (
