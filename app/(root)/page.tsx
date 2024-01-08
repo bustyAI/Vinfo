@@ -42,17 +42,13 @@ export default async function Home() {
           Trusted by <br />
           your local DSP
         </h2>
-        <div className="flex w-full flex-col gap-5 md:flex-row">
-          Search <br />
-          filter
-        </div>
         <VanCollection
           data={vans?.data}
           emptyTitle="No Vans Found"
           emptyStateSubtext="Register your fleet now"
           collectionType="All_Vans"
-          limit={6}
-          totalPages={2}
+          limit={1000}
+          totalPages={1}
           page={""}
         />
       </section>
