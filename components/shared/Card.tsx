@@ -34,10 +34,7 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
         </div>
       )}
 
-      <Link
-        href={`/vans/${van._id}`}
-        className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4"
-      >
+      <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         <div className="flex gap-2 ">
           <p className="p-semibold-14 w-min rounded-full bg-grey-500/10 px-4 py-1">
             {van.name.toUpperCase()}
@@ -61,6 +58,7 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
           </span>
         </div>
         <p className="p-medium-16 p-medium-18 text-grey-500">{van.vanType}</p>
+        <p className="p-bold-20 text-gray-600">Maintenance</p>
         <p className="p-medium-16 md:p-medium-20 line-clamp-2 flex-1 text-black">
           {van.maintenance ? van.maintenance : "No Maintenance"}
         </p>
@@ -68,14 +66,8 @@ const Card = ({ van, hasOrderLink }: VanProps) => {
           <p className="p-medium-14 md:p-medium-16 text-grey-600">
             {van.creator.firstName} {van.creator.lastName}
           </p>
-          {hasOrderLink && (
-            <Link href={`/vans?vanId=${van._id}`} className="flex gap-2">
-              <p className="text-primary-500">Van Details</p>
-              <FaSearch className="h-[10px] w-[10px]" />
-            </Link>
-          )}
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

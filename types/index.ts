@@ -59,7 +59,7 @@ export type GetAllVansParams = {
   page: number;
 };
 
-export type GetEventsByUserParams = {
+export type GetVansByUserParams = {
   userId: string;
   limit?: number;
   page: number;

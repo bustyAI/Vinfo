@@ -4,6 +4,7 @@ import {
   CreateVanParams,
   DeleteVanParams,
   GetAllVansParams,
+  GetVansByUserParams,
   UpdateVanParams,
 } from "@/types";
 import { handleError } from "../utils";
@@ -106,6 +107,32 @@ export const getAllVans = async ({
     handleError(error);
   }
 };
+
+// GET VANS BY CREATOR
+export async function getVansByUser({
+  userId,
+  limit = 6,
+  page,
+}: GetVansByUserParams) {
+  try {
+    await connectToDatabase();
+
+    const conditions = { creator: userId };
+    const skipAmount = (page - 1) * limit;
+
+    const eventsQuery = Van.find(conditions).skip(skipAmount).limit(limit);
+
+    const events = await populateVan(eventsQuery);
+    const eventsCount = await Van.countDocuments(conditions);
+
+    return {
+      data: JSON.parse(JSON.stringify(events)),
+      totalPages: Math.ceil(eventsCount / limit),
+    };
+  } catch (error) {
+    handleError(error);
+  }
+}
 
 // DELETE
 export async function deleteVan({ vanId, path }: DeleteVanParams) {
