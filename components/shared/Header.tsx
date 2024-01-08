@@ -12,7 +12,13 @@ const Header = () => {
     <header className="w-full border-b">
       <div className="wrapper flex items-center justify-between">
         <Link href="/" className="w-36">
-          Logo
+          <Image
+            src="/assets/images/prime-logo.png"
+            height={300}
+            width={300}
+            className=" object-contain"
+            alt="prime"
+          />
         </Link>
 
         <SignedIn>
